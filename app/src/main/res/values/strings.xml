@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RegistroPersonas</string>
-    <string name="hint_Personas">Nombre</string>
-    <string name="hint_Balance">Balance</string>
+    <string name="hint_Personas">Nombres</string>
+    <string name="hint_Balance">Salario</string>
+    <string name="hint_email">Email</string>
     <string name="guardar">Guardar</string>
 </resources>
