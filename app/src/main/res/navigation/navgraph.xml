@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navgraph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/listaPersonasFragment">
 
+
+    <fragment
+        android:id="@+id/listaPersonasFragment"
+        android:name="com.example.registropersonas.viewmodel.ListaPersonasFragment"
+        android:label="lista_personas_fragment"
+        tools:layout="@layout/lista_personas_fragment" >
+        <action
+            android:id="@+id/action_listaPersonasFragment_to_personasFragment"
+            app:destination="@id/personasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personasFragment"
+        android:name="com.example.registropersonas.viewmodel.PersonasFragment"
+        android:label="fragment_personas"
+        tools:layout="@layout/fragment_personas" />
+    <argument
+        android:name="persona"
+        app:argType="com.example.registropersonas.model.Persona"
+        app:nullable="true"
+        android:defaultValue="@null"/>
 </navigation>

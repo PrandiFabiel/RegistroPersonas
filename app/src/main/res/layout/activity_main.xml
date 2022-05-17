@@ -6,70 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ocupacionTextInput"
+    <fragment
+        android:id="@+id/host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navgraph"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="@dimen/margin16"
-        android:layout_marginTop="@dimen/margin16"
-        android:layout_marginEnd="@dimen/margin16"
-        android:hint="@string/hint_Personas">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ocupacionEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ingresosTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin16"
-        android:layout_marginTop="@dimen/margin16"
-        android:layout_marginEnd="@dimen/margin16"
-        android:hint="@string/hint_Balance"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ocupacionTextInput">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ingresosEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/EmailTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin16"
-        android:layout_marginTop="@dimen/margin16"
-        android:layout_marginEnd="@dimen/margin16"
-        android:hint="@string/hint_email"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ingresosTextInput">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/EmailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/guardarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin16"
-        android:layout_marginTop="@dimen/margin16"
-        android:layout_marginEnd="@dimen/margin16"
-        android:text="@string/guardar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailTextInput" />
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
