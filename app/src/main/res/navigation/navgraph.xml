@@ -13,16 +13,22 @@
         tools:layout="@layout/lista_personas_fragment" >
         <action
             android:id="@+id/action_listaPersonasFragment_to_personasFragment"
-            app:destination="@id/personasFragment" />
+            app:destination="@id/personasFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/personasFragment"
         android:name="com.example.registropersonas.viewmodel.PersonasFragment"
         android:label="fragment_personas"
-        tools:layout="@layout/fragment_personas" />
-    <argument
-        android:name="persona"
-        app:argType="com.example.registropersonas.model.Persona"
-        app:nullable="true"
-        android:defaultValue="@null"/>
+        tools:layout="@layout/fragment_personas" >
+        <argument
+            android:name="persona"
+            app:argType="com.example.registropersonas.model.Persona"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

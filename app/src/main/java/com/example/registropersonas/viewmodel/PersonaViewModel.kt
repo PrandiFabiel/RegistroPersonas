@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.registropersonas.data.PersonaDao
 import com.example.registropersonas.model.Persona
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,6 +15,9 @@ import javax.inject.Inject
 class PersonaViewModel @Inject constructor(
     val  personaDao: PersonaDao
 ) : ViewModel(){
+    val personas : Flow<List<Persona>>
+        get() =  personaDao.getLista()
+
     private val _guardado = MutableLiveData(false)
     val guardado: LiveData<Boolean> get() = _guardado
 

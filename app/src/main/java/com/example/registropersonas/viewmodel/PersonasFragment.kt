@@ -5,56 +5,61 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.registropersonas.R
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.registropersonas.databinding.FragmentPersonasBinding
+import com.example.registropersonas.model.Persona
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class PersonasFragment : Fragment(){
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PersonasFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class PersonasFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val viewModel: PersonaViewModel by viewModels()
+    private lateinit var binding: FragmentPersonasBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val args : PersonasFragmentArgs by navArgs()
+    private var personaId: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personas, container, false)
+        binding = FragmentPersonasBinding.inflate(inflater, container, false)
+
+        LlenarCampos()
+
+        binding.guardarButton.setOnClickListener {
+            viewModel.guardar(
+                Persona(
+                    personaId,
+                    binding.nombresEditText.text.toString(),
+                    binding.salarioEditText.floatValue()
+                )
+            )
+        }
+
+        viewModel.guardado.observe(viewLifecycleOwner){
+            if (it) {
+                Snackbar.make(binding.salarioEditText, "Guardo", Snackbar.LENGTH_LONG).show()
+                findNavController().navigateUp()
+            }
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PersonasFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PersonasFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun LlenarCampos(){
+        val persona: Persona? = args.persona
+
+        persona?.let {
+            personaId = it.personaId
+            binding.nombresEditText.setText(it.nombres)
+            binding.salarioEditText.setText(it.balance.toString())
+        }
     }
+
+    fun TextInputEditText.floatValue() = text.toString().toFloatOrNull() ?: 0.0f
 }

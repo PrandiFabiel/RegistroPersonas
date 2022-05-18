@@ -61,7 +61,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
 
     //Navigation
-    def navigationVersion = "2.3.5"
+    def navigationVersion = "2.4.2"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
